@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/index.css">
+    <title>Lista de Funcionários</title>
+</head>
+<body>
+
+    <h1>LISTA DE FUNCIONÁRIOS</h1>
+    <table border="1">
+        <tr>
+            <th>ID</th>
+            <th>NOME</th>
+            <th>SOBRENOME</th>
+            <th>DATA DE ADMISSÃO</th>
+            <th>STATUS</th>
+            <th>SETOR</th>
+            <th>CARGO</th>
+        </tr>
+        {% for funcionario in funcionarios %}
+        <tr>
+            <td>{{ funcionario.id }}</td>
+            <td>{{ funcionario.nome }}</td>
+            <td>{{ funcionario.sobrenome }}</td>
+            <td>{{ funcionario.data_admissao }}</td>
+            <td>{{ 'Ativo' if funcionario.status_funcionario else 'Inativo' }}</td>
+            <td>{{ funcionario.setor.nome }}</td>
+            <td>{{ funcionario.cargo.nome }}</td>
+            <td>
+                <form action="/excluir_funcionario/{{ funcionario.id }}" method="post">
+                    <button type="submit">Excluir</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    <h2>OPÇÕES:</h2>
+    <a href="/cadastrar_funcionario"><button id="btn">Cadastrar Funcionários</button></a>
+    <a href="/setor"><button id="btn">Gerenciar Setores</button></a>
+    <a href="/cargo"><button id="btn">Gerenciar Cargos</button></a>   
+</body>
+</html>

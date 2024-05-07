@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cad_Funcionários</title>
+    <link rel="stylesheet" href="../static/cadastrar_funcionarios.css">
+</head>
+<body>
+    <form action="/cadastrar_funcionario" method="post" name="funcionario" id="form">
+        <div class="funcionario">
+            <h1 class="title">CADASTRO DE FUNCIONÁRIOS</h1><br><br>
+            <label for="nome">
+                Nome: 
+                <input placeholder="insira o nome" type="text" name="nome" id="nome" autocomplete="off" required>
+            </label><br><br>
+            <label for="sobrenome">
+                Sobrenome:
+                <input placeholder="insira o sobrenome" type="text" name="sobrenome" id="sobrenome" required>
+            </label><br><br>
+            <label for="data_admissao">
+                Data de Admissão:
+            </label><br>
+            <input type="date" id="data_admissao" name="data_admissao"><br><br>
+    
+            <label for="statys_funcionario">
+                Status do Funcionário:
+            </label>
+            <select id="status_funcionario" name="status_funcionario" required>
+                <option value=""></option>
+                <option value="1">ATIVO</option>
+                <option value="0">INATIVO</option>
+            </select><br><br>
+    
+            <label for="id_setor">
+                Setor:
+            </label>
+            <select id="id_setor" name="id_setor" required>
+                <option value=""></option>
+                {% for setor in setores %}
+                    <option value="{{ setor.id }}">{{ setor.nome }}</option>
+                {% endfor %}
+            </select><br><br>
+    
+            <label for="id_cargo">
+                Cargo:
+            </label>
+            <select id="id_cargo" name="id_cargo" required>
+                <option value=""></option>
+                {% for cargo in cargos %}
+                    <option value="{{ cargo.id }}">{{ cargo.nome }}</option>
+                {% endfor %}
+            </select><br><br>
+
+            <button type="submit" value="cadastrar" name="botao-cadastrar" id="btn">CADASTRAR</button>
+            <button a href="/voltar" value="voltar" name="botao-voltar" id="vlt">VOLTAR</button>
+        </div>
+    </form>
+</body>
+</html>
